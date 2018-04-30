@@ -17,12 +17,13 @@ import com.partition.utilities.Utils;
 public class UtilsTest {
 
 	/**
-	 *  Pour tester les listes d'entiers en ordre
+	 *  to test list of integers with odered partionning
 	 */
 	@Test
 	public void TestOrderedListInteger() {
 
 		List<Integer> sourceList = Arrays.asList(1,2,3,4,5);
+		
 		List<List<Integer>> firstTest = new ArrayList<List<Integer>>();
 		firstTest.add(Arrays.asList(1,2));
 		firstTest.add(Arrays.asList(3,4));
@@ -45,7 +46,7 @@ public class UtilsTest {
 	}
 	
 	/**
-	 * Permet de test la fonction listEqualsIgnoreOrder
+	 * test the method listEqualsIgnoreOrder
 	 */
 	@Test
 	public void TestListequalUnordered() {
@@ -57,8 +58,8 @@ public class UtilsTest {
 	}
 	
 	/**
-	 *  Pour tester les listes d'entiers en ordre
-	 *  ne verifier que la liste en sortie contient les même élements que la liste en entrée
+	 *  to test parallel partionning
+	 *  verifies if the output list of lists have the same values as the input list
 	 */
 	@Test
 	public void TestUnOrderedListInteger() {
@@ -72,7 +73,7 @@ public class UtilsTest {
 	
 
 	/**
-	 * Pour tester les listes avec des String en Ordre
+	 * test parallel partionning for Sring objects
 	 */
 	@Test
 	public void TesOrderedtListString() {
@@ -87,14 +88,14 @@ public class UtilsTest {
 
 
 	/**
-	 *  pour tester les tableaux dans l'ordre
+	 *  test array for parallel partionning
 	 * @throws EmptyArrayException
 	 */
 	@Test
 	public void TestOrderedArray() throws EmptyArrayException {
 
-		// malheureusement il faut utiliser les classes pour les primitives
-		Integer[] tableau = {1,2,3,4,5};
+		// you can't use primitives
+		Integer[] array = {1,2,3,4,5};
 
 		List<List<Integer>> firstTest = new ArrayList<List<Integer>>();
 		firstTest.add(Arrays.asList(1,2));
@@ -112,13 +113,13 @@ public class UtilsTest {
 		thirdTest.add(Arrays.asList(4));
 		thirdTest.add(Arrays.asList(5));
 
-		assertTrue(CollectionUtils.isEqualCollection(firstTest, Utils.partition(tableau, 2)));
-		assertTrue(CollectionUtils.isEqualCollection(secondTest, Utils.partition(tableau, 3)));
-		assertTrue(CollectionUtils.isEqualCollection(thirdTest, Utils.partition(tableau, 1)));
+		assertTrue(CollectionUtils.isEqualCollection(firstTest, Utils.partition(array, 2)));
+		assertTrue(CollectionUtils.isEqualCollection(secondTest, Utils.partition(array, 3)));
+		assertTrue(CollectionUtils.isEqualCollection(thirdTest, Utils.partition(array, 1)));
 	}
 
 	/**
-	 * Pour tester le tableau avec partitionnement en parallel
+	 * to test parallel partionning
 	 * @throws EmptyArrayException
 	 */
 	@Test
@@ -133,7 +134,7 @@ public class UtilsTest {
 	}
 
 	/**
-	 * Tester un tableau vide
+	 * test if array is empty exception - Ordered Pationning
 	 * @throws EmptyArrayException
 	 */
 	@Test(expected=EmptyArrayException.class)
@@ -146,10 +147,15 @@ public class UtilsTest {
 
 	}
 
-	// Tester un tableau vide par PartitionParallel
+	/**
+	 * test if array is empty exception - Parallel Patitionning
+	 * @throws EmptyArrayException
+	 */
 	@Test(expected=EmptyArrayException.class)
 	public void EmptyArray1() throws EmptyArrayException {
+		
 		String[] emptyTab = new String[3];
+		
 		Utils.partitionParallel(emptyTab, 2);
 		fail("Expected EmptyArrayException");
 

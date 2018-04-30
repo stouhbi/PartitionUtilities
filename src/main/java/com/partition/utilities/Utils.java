@@ -11,39 +11,47 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
+/**
+ * Utility class for partitionning
+ * @author saadtouhbi
+ *
+ */
 public class Utils {
 
 
 	public static final Logger logger = LogManager.getLogger(Utils.class);
 
 	/**
-	 * Partionnement avec ordre
-	 * @param liste
-	 * @param taille
+	 * Partitionning with order
+	 * @param list
+	 * @param size
 	 * @return Collection<List<T>>
 	 */
-	public static  <T> Collection<List<T>> partition(List<T> liste, int taille){
-		logger.trace("Début Partition");
-		final AtomicInteger compteur = new AtomicInteger(0);
-		logger.trace("Fin de Patition");
+	public static  <T> Collection<List<T>> partition(List<T> list, int size){
+		logger.info("Start Patitionning - Ordered");
+		final AtomicInteger counter = new AtomicInteger(0);
+		logger.info("End Partionning - Ordered");
 
-		return liste.stream()
-				.collect(Collectors.groupingBy(it -> compteur.getAndIncrement() / taille))
+		return list.stream()
+				.collect(Collectors.groupingBy(it -> counter.getAndIncrement() / size))
 				.values();
 	}
 
 
 	/**
 	 * Partionnement avec ordre, en utilisant un tableau 
-	 * @param liste
-	 * @param taille
+	 * @param list
+	 * @param size
 	 * @return Collection<List<T>>
 	 * @throws EmptyArrayException
 	 */
-	public static final <T> Collection<List<T>> partition(T[] liste, int taille) throws EmptyArrayException{
-		logger.trace("Utilisation d'un tableau pour partition");
+	public static final <T> Collection<List<T>> partition(T[] list, int size) throws EmptyArrayException{
+		logger.info("Using Array to partition");
 		Boolean vide = true;
-		for (Object ob : liste) {
+		
+		// check if there is at least one value in the array
+		for (Object ob : list) {
 			if (ob != null) {
 				vide = false;
 				break;
@@ -51,24 +59,26 @@ public class Utils {
 		}
 
 		if(vide) {
-			logger.error("Tableau vide " +  Arrays.asList(liste));
-			throw new EmptyArrayException("Le tableau est vide");
+			logger.error("Empty Array " +  Arrays.asList(list));
+			throw new EmptyArrayException("The array does not contain at least one value");
 		}
 
 
-		return partition(Arrays.asList(liste), taille);
+		return partition(Arrays.asList(list), size);
 	}
 
 	/**
-	 * Partitionnement sans ordre en utilisant ParalleStream
+	 * Unordered partitionning with parallel streamParallel
 	 * @param liste
 	 * @param taille
 	 * @return
 	 */
 	public static  <T> Collection<List<T>> partitionParallel(List<T> liste, int taille){
-		logger.trace("Début Partition");
+		
+		logger.info("Start Parallel partionning");
 		final AtomicInteger compteur = new AtomicInteger(0);
-		logger.trace("Fin de Patition");
+		
+		logger.info("End Parallel partionning");
 
 		return liste.parallelStream()
 				.collect(Collectors.groupingBy(it -> compteur.getAndIncrement() / taille))
@@ -76,14 +86,14 @@ public class Utils {
 	}
 	
 	/**
-	 * Partionnement sans ordre, en utilisant un tableau 
+	 * Unordered Partionning using an array
 	 * @param liste
 	 * @param taille
 	 * @return Collection<List<T>>
 	 * @throws EmptyArrayException
 	 */
 	public static final <T> Collection<List<T>> partitionParallel(T[] liste, int taille) throws EmptyArrayException{
-		logger.trace("Utilisation d'un tableau pour partition");
+		logger.info("Using an array for parallel partionning");
 		Boolean vide = true;
 		for (Object ob : liste) {
 			if (ob != null) {
@@ -93,8 +103,8 @@ public class Utils {
 		}
 
 		if(vide) {
-			logger.error("Tableau vide " +  Arrays.asList(liste));
-			throw new EmptyArrayException("Le tableau est vide");
+			logger.error("Empty Array " +  Arrays.asList(liste));
+			throw new EmptyArrayException("The array is empty");
 		}
 
 
@@ -103,7 +113,7 @@ public class Utils {
 	
 	
 	/**
-	 * Comparer deux collections sans ordrer
+	 * Compare two collections if they have the same values without considering order
 	 * @param list1
 	 * @param list2
 	 * @return boolean

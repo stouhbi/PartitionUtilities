@@ -8,6 +8,11 @@ import java.util.stream.IntStream;
 
 
 
+/**
+ * A little bit of manual test
+ * @author saadtouhbi
+ *
+ */
 public class Main 
 {
 	public static void main( String[] args )
@@ -25,7 +30,7 @@ public class Main
 		try {
 			System.out.println(Utils.partition(list3, 1)); // throws exception
 		} catch (EmptyArrayException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}  // []
 

@@ -1,5 +1,10 @@
 package com.partition.utilities;
 
+/**
+ * Empty Array with no values Exception
+ * @author saadtouhbi
+ *
+ */
 public class EmptyArrayException extends Exception {
 
 
