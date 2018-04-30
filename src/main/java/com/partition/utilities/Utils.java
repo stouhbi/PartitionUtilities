@@ -28,7 +28,7 @@ public class Utils {
 	 * @param size
 	 * @return Collection<List<T>>
 	 */
-	public static  <T> Collection<List<T>> partition(List<T> list, int size){
+	public static  <T> Collection<List<T>> partition(Collection<T> list, int size){
 		logger.info("Start Patitionning - Ordered");
 		final AtomicInteger counter = new AtomicInteger(0);
 		logger.info("End Partionning - Ordered");
@@ -73,15 +73,15 @@ public class Utils {
 	 * @param taille
 	 * @return
 	 */
-	public static  <T> Collection<List<T>> partitionParallel(List<T> liste, int taille){
+	public static  <T> Collection<List<T>> partitionParallel(Collection<T> list, int size){
 		
 		logger.info("Start Parallel partionning");
-		final AtomicInteger compteur = new AtomicInteger(0);
+		final AtomicInteger counter = new AtomicInteger(0);
 		
 		logger.info("End Parallel partionning");
 
-		return liste.parallelStream()
-				.collect(Collectors.groupingBy(it -> compteur.getAndIncrement() / taille))
+		return list.parallelStream()
+				.collect(Collectors.groupingBy(it -> counter.getAndIncrement() / size))
 				.values();
 	}
 	
@@ -92,10 +92,10 @@ public class Utils {
 	 * @return Collection<List<T>>
 	 * @throws EmptyArrayException
 	 */
-	public static final <T> Collection<List<T>> partitionParallel(T[] liste, int taille) throws EmptyArrayException{
+	public static final <T> Collection<List<T>> partitionParallel(T[] list, int size) throws EmptyArrayException{
 		logger.info("Using an array for parallel partionning");
 		Boolean vide = true;
-		for (Object ob : liste) {
+		for (Object ob : list) {
 			if (ob != null) {
 				vide = false;
 				break;
@@ -103,12 +103,12 @@ public class Utils {
 		}
 
 		if(vide) {
-			logger.error("Empty Array " +  Arrays.asList(liste));
+			logger.error("Empty Array " +  Arrays.asList(list));
 			throw new EmptyArrayException("The array is empty");
 		}
 
 
-		return partition(Arrays.asList(liste), taille);
+		return partition(Arrays.asList(list), size);
 	}
 	
 	
@@ -119,7 +119,7 @@ public class Utils {
 	 * @return boolean
 	 */
 	
-	public static <T> boolean listEqualsIgnoreOrder(List<T> list1, List<T> list2) {
+	public static <T> boolean listEqualsIgnoreOrder(Collection<T> list1, Collection<T> list2) {
 	    return new HashSet<>(list1).equals(new HashSet<>(list2));
 	}
 
