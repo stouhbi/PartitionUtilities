@@ -30,6 +30,6 @@ public class Main
 		}  // []
 
 		// Performance
-		System.out.println(Utils.partition(IntStream.range(1, 100000).boxed().collect(Collectors.toList()), 2));
+		//System.out.println(Utils.partition(IntStream.range(1, 100000).boxed().collect(Collectors.toList()), 2));
 	}
 }
