@@ -117,6 +117,20 @@ public class UtilsTest {
 		assertTrue(CollectionUtils.isEqualCollection(thirdTest, Utils.partition(tableau, 1)));
 	}
 
+	/**
+	 * Pour tester le tableau avec partitionnement en parallel
+	 * @throws EmptyArrayException
+	 */
+	@Test
+	public void TestUnOrderedArray() throws EmptyArrayException {
+		Integer[] tableau = {1,2,3,4,5};
+
+		List<Integer> arrayTest = Arrays.asList(3,2,1,5,4);
+		
+		assertTrue(Utils.listEqualsIgnoreOrder(arrayTest, Utils.partitionParallel(tableau, 2).stream().flatMap(List::stream)
+		        .collect(Collectors.toList())));
+		
+	}
 
 	/**
 	 * Tester un tableau vide
