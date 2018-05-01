@@ -28,11 +28,14 @@ public class Utils {
 	 * @param size
 	 * @return Collection<List<T>>
 	 */
-	public static  <T> Collection<List<T>> partition(Collection<T> list, int size){
+	public static final <T> Collection<List<T>> partition(Collection<T> list, int size){
 		logger.info("Start Patitionning - Ordered");
+		
+		// We use AtomicGenerator for the getAndIncrement()
 		final AtomicInteger counter = new AtomicInteger(0);
 		logger.info("End Partionning - Ordered");
 
+		// using groupingBy to fragment the stream in to fragments of maximum size 
 		return list.stream()
 				.collect(Collectors.groupingBy(it -> counter.getAndIncrement() / size))
 				.values();
@@ -73,7 +76,7 @@ public class Utils {
 	 * @param taille
 	 * @return
 	 */
-	public static  <T> Collection<List<T>> partitionParallel(Collection<T> list, int size){
+	public static final <T> Collection<List<T>> partitionParallel(Collection<T> list, int size){
 		
 		logger.info("Start Parallel partionning");
 		final AtomicInteger counter = new AtomicInteger(0);
@@ -119,7 +122,7 @@ public class Utils {
 	 * @return boolean
 	 */
 	
-	public static <T> boolean listEqualsIgnoreOrder(Collection<T> list1, Collection<T> list2) {
+	public static final <T> boolean listEqualsIgnoreOrder(Collection<T> list1, Collection<T> list2) {
 	    return new HashSet<>(list1).equals(new HashSet<>(list2));
 	}
 

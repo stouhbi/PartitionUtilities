@@ -1,6 +1,6 @@
 # PartitionUtilities
 
-Utilitaire pour le partionnement d'une liste (`Set, List`) sous forme d'une liste de liste selon une variable représentant le nombre maximum de valeur dans chaque liste
+Utilitaire pour le partionnement d'une liste (`Set, List, Queue`) sous forme d'une liste de liste selon une variable représentant le nombre maximum de valeur dans chaque liste
 
 
 ## Comment utiliser
@@ -21,7 +21,7 @@ La class `Utils` dans le package `com.partition.utilities` contien 4 fonctions s
 public static  <T> Collection<List<T>> partition(Collection<T> list, int size)
 ```
 
-Permet le partionnoment d'une liste `List` selon l'odrer dans cette dernière. On peut utiliser la classe `Set` mais ceci ne permet pas de suivre l'objectif de cette dernière.
+Permet le partionnoment d'une liste `List, Queue` selon l'odrer dans cette dernière. On peut utiliser la classe `Set` mais ceci ne permet pas de suivre l'objectif de cette dernière.
 
 
 ```java
@@ -35,7 +35,7 @@ Permet de faire un partionnement ordonnée d'un tableau. L'exception ou la table
 public static  <T> Collection<List<T>> partitionParallel(Collection<T> list, int size)
 ```
 
-Permet le partionnement d'une liste `Set, List` sans respecter l'odrer en utilisant parallelStream afin d'assurer plus de rapidité.
+Permet le partionnement d'une liste `Set, List, Queue` sans respecter l'odrer en utilisant parallelStream afin d'assurer plus de rapidité.
 
 
 ```java
