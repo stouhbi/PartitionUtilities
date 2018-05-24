@@ -43,7 +43,7 @@ public class Utils {
 
 
 	/**
-	 * Partionnement avec ordre, en utilisant un tableau 
+	 * Ordered Patitionning using an array 
 	 * @param list
 	 * @param size
 	 * @return Collection<List<T>>
@@ -89,7 +89,7 @@ public class Utils {
 	}
 	
 	/**
-	 * Unordered Partionning using an array
+	 * Unordered Parallel Partionning using an array
 	 * @param liste
 	 * @param taille
 	 * @return Collection<List<T>>
@@ -111,7 +111,7 @@ public class Utils {
 		}
 
 
-		return partition(Arrays.asList(list), size);
+		return partitionParallel(Arrays.asList(list), size);
 	}
 	
 	

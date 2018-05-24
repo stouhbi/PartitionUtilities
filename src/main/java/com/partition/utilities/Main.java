@@ -38,6 +38,6 @@ public class Main
 		}  // []
 
 		// Parallel
-		System.out.println(Utils.partitionParallel(IntStream.range(1, 100000).boxed().collect(Collectors.toList()), 2));
+		//System.out.println(Utils.partitionParallel(IntStream.range(1, 100000).boxed().collect(Collectors.toList()), 2));
 	}
 }
